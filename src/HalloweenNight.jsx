@@ -79,7 +79,6 @@ export default function HalloweenNight({ copy }) {
 
   return (
     <div className="hw-night">
-      <div className="hw-moon" aria-hidden="true" />
       <div className="hw-fog" aria-hidden="true" />
       <div className="hw-eyes" aria-hidden="true">
         <i />
