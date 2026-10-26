@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser'
 
 const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'f3J0Fv7DkX-KrgCro'
-const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_mozs0p9'
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_r21rk2u'
 const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_u9fyp5t'
 
 export async function sendContactEmail({ name, email, message, plan = '', phone = '', detail_custom = '' }) {
