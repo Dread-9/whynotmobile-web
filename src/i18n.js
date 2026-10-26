@@ -118,6 +118,15 @@ export const copy = {
     rights: '© 2026 NexGen Technologies. Todos los derechos reservados.',
     lang: 'Idioma',
     theme: 'Modo oscuro',
+    season: {
+      dieciocho: { icon: '🇨🇱', title: '¡Viva el 18!', tap: 'Toca para celebrar', flag: 'Bandera', music: 'Música 18', musicOff: 'Silenciar', line: 'Cueca, asado y una app con color chileno.' },
+      halloween: { icon: '🎃', title: 'Noche de apps', tap: 'Toca si te atreves', pumpkin: 'Calabaza', line: 'Última semana de octubre: un susto bueno en las tiendas.' },
+      christmas: { icon: '🎄', title: 'Navidad en Play y App Store', tap: 'Toca y nieva más', tree: 'Árbol', line: 'Publica a tiempo y llega con regalo este año.' },
+      newyear: { icon: '✨', title: 'Año nuevo, app nueva', tap: 'Toca por brillos', toast: 'Año nuevo', now: '¡Ya es año nuevo!', line: 'Cierra diciembre y abre enero con el lanzamiento.' },
+      valentine: { icon: '♥', title: 'Apps con corazón', tap: 'Toca por corazones', heart: 'Corazón', line: 'Parejas, regalos o citas: una pantalla que enamora.' },
+      mother: { icon: '🌷', title: 'Para mamá, en el celular', tap: 'Toca las flores', line: 'Un detalle digital que sí se usa todos los días.' },
+      child: { icon: '🎈', title: 'Pantallas a su medida', tap: 'Toca y suben globos', line: 'Juegos y aprendizaje para el Día del Niño.' },
+    },
   },
   en: {
     nav: [
@@ -236,5 +245,14 @@ export const copy = {
     rights: '© 2026 NexGen Technologies. All rights reserved.',
     lang: 'Language',
     theme: 'Dark mode',
+    season: {
+      dieciocho: { icon: '🇨🇱', title: 'Fiestas Patrias', tap: 'Tap to celebrate', flag: 'Flag', music: 'Fiestas music', musicOff: 'Mute', line: 'Cueca, asado and an app with Chilean color.' },
+      halloween: { icon: '🎃', title: 'App night', tap: 'Tap if you dare', pumpkin: 'Pumpkin', line: 'Last week of October: a good scare in the stores.' },
+      christmas: { icon: '🎄', title: 'Christmas in the stores', tap: 'Tap for more snow', tree: 'Tree', line: 'Ship in time and land as a gift this year.' },
+      newyear: { icon: '✨', title: 'New year, new app', tap: 'Tap for sparkles', toast: 'New year', now: 'It’s the new year!', line: 'Close December and open January with a launch.' },
+      valentine: { icon: '♥', title: 'Apps with a heart', tap: 'Tap for hearts', heart: 'Heart', line: 'Couples, gifts or dates — a screen that lands.' },
+      mother: { icon: '🌷', title: 'For mom, on the phone', tap: 'Tap the flowers', line: 'A digital gift people actually use.' },
+      child: { icon: '🎈', title: 'Screens their size', tap: 'Tap for balloons', line: "Play and learning for Children's Day." },
+    },
   },
 }
