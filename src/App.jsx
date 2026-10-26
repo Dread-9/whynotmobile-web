@@ -38,25 +38,9 @@ const Phone = ({ children }) => (
   </div>
 )
 
-const festiveLogo = {
-  christmas: '/logo/wnm-christmas.png',
-  newyear: '/logo/wnm-newyear.png',
-  valentine: '/logo/wnm-valentine.png',
-  halloween: '/logo/wnm-halloween.png',
-}
-
-const Logo = ({ className = 'h-12', season }) => {
-  const festive = season?.id && festiveLogo[season.id]
-  const img = (
-    <img
-      src={festive || '/logo/wnm-badge.png'}
-      alt="WhyNot Mobile"
-      className={`${festive ? 'h-full w-full' : className} object-contain ${festive ? '' : 'w-auto rounded-full'} ${season?.id === 'dieciocho' ? 'logo-18' : ''}`}
-    />
-  )
-  if (!festive) return img
-  return <span className={`logo-plate logo-plate-${season.id}`}>{img}</span>
-}
+const Logo = ({ className = 'h-12' }) => (
+  <img src="/logo/wnm-badge.png" alt="WhyNot Mobile" className={`${className} w-auto rounded-full`} />
+)
 
 const CheckRow = ({ checked, onChange, label, children, locked = false }) => (
   <li className="text-sm text-neutral-600 dark:text-violet-200/80">
@@ -243,7 +227,7 @@ export default function App() {
       <header className="site-header sticky top-0 z-40 border-b border-violet-100 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
           <a href="#inicio" className="shrink-0 whitespace-nowrap duration-300 hover:scale-105" aria-label={t.brand}>
-            <Logo className="h-12 sm:h-14" season={season} />
+            <Logo className="h-12 sm:h-14" />
           </a>
           <nav className="hidden flex-1 items-center justify-center gap-1 text-sm text-neutral-600 dark:text-violet-200 lg:flex">
             {t.nav.map(([href, label]) => (
@@ -483,7 +467,7 @@ export default function App() {
       <section id="contacto" className="px-6 py-20">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
           <div>
-            <Logo className="h-16" season={season} />
+            <Logo className="h-16" />
             <h2 className="mt-4 text-4xl font-semibold text-ink dark:text-white">{t.contactTitle}</h2>
             <p className="mt-3 max-w-md text-neutral-500 dark:text-violet-200/80">{t.contactLead}</p>
             <p className="mt-8 max-w-sm text-sm leading-6 text-neutral-500 dark:text-violet-200/80">
@@ -539,7 +523,7 @@ export default function App() {
       <footer className="site-footer border-t border-violet-100 px-6 py-14 text-sm text-neutral-500 dark:border-violet-900 dark:text-violet-300">
         <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo className="h-16" season={season} />
+            <Logo className="h-16" />
             <p className="mt-2 whitespace-nowrap font-semibold text-ink dark:text-white">{t.brand}</p>
             <p className="mt-1 text-mark">{t.dare}</p>
             <div className="mt-5 flex gap-4 text-xl text-ink dark:text-violet-100">
