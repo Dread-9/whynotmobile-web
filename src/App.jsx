@@ -15,7 +15,6 @@ import { sendContactEmail } from './utils/sendContact'
 import { copy } from './i18n'
 import PetPalooza from './PetPalooza'
 import SeasonDecor from './SeasonDecor'
-import SeasonBanner from './SeasonBanner'
 import { getSeason } from './season'
 
 const wsp = '56954583715'
@@ -263,7 +262,6 @@ export default function App() {
           </nav>
         )}
       </header>
-      {season && <SeasonBanner season={season} copy={t.season[season.id]} />}
 
       {isPet ? (
         <PetPalooza t={t} />
