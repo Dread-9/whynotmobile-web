@@ -97,8 +97,9 @@ function splitTime(ms) {
   }
 }
 
-export function NewYearNight({ copy }) {
-  const [flash, setFlash] = useState(false)
+const nyColors = ['#fbbf24', '#f472b6', '#38bdf8', '#4ade80', '#f97316', '#e879f9']
+
+export function NewYearCount({ copy, className = '' }) {
   const [left, setLeft] = useState(() => splitTime(newYearTarget(new Date()) - Date.now()))
 
   useEffect(() => {
@@ -107,28 +108,68 @@ export function NewYearNight({ copy }) {
     return () => window.clearInterval(id)
   }, [])
 
+  return (
+    <button
+      type="button"
+      className={`ny-count ${className}`.trim()}
+      onClick={() => window.dispatchEvent(new Event('wn-season-fx'))}
+      aria-label={copy.toast}
+    >
+      <span className="ny-count-year">{left.done ? copy.now : copy.toast}</span>
+      <span className="ny-count-row">
+        <b>{left.days}</b><i>d</i>
+        <b>{left.hours}</b><i>h</i>
+        <b>{left.minutes}</b><i>m</i>
+        <b>{left.seconds}</b><i>s</i>
+      </span>
+    </button>
+  )
+}
+
+export function NewYearNight() {
+  const [flash, setFlash] = useState(false)
   const play = () => {
     setFlash(true)
     document.documentElement.classList.add('is-fx-newyear')
     window.setTimeout(() => {
       setFlash(false)
       document.documentElement.classList.remove('is-fx-newyear')
-    }, 1000)
+    }, 1600)
   }
   useFx(play)
 
+  if (!flash) return null
+
   return (
-    <div className="ny-night">
-      <button type="button" className="ny-count" onClick={play} aria-label={copy.toast}>
-        <span className="ny-count-year">{left.done ? copy.now : copy.toast}</span>
-        <span className="ny-count-row">
-          <b>{left.days}</b><i>d</i>
-          <b>{left.hours}</b><i>h</i>
-          <b>{left.minutes}</b><i>m</i>
-          <b>{left.seconds}</b><i>s</i>
-        </span>
-      </button>
-      {flash && <div className="season-flash ny-flash">AÑO NUEVO</div>}
+    <div className="ny-night is-burst">
+      <div className="ny-sky" aria-hidden="true">
+        {Array.from({ length: 10 }).map((_, i) => (
+          <i
+            key={`fw-${i}`}
+            className="ny-fw"
+            style={{
+              left: `${8 + (i * 9) % 84}%`,
+              top: `${8 + (i * 11) % 48}%`,
+              color: nyColors[i % nyColors.length],
+              background: nyColors[i % nyColors.length],
+              animationDelay: `${(i * 0.08) % 0.6}s`,
+              animationDuration: `${0.9 + (i % 3) * 0.2}s`,
+            }}
+          />
+        ))}
+        {Array.from({ length: 18 }).map((_, i) => (
+          <b
+            key={`sp-${i}`}
+            className="ny-serp"
+            style={{
+              left: `${(i * 6 + 4) % 96}%`,
+              background: nyColors[i % nyColors.length],
+              animationDelay: `${(i * 0.05) % 0.4}s`,
+              animationDuration: `${1.6 + (i % 4) * 0.25}s`,
+            }}
+          />
+        ))}
+      </div>
     </div>
   )
 }
@@ -187,15 +228,18 @@ export function PatrioticNight({ copy }) {
 
   return (
     <div className="d18-night">
-      <div className="d18-banner">
-        <ChileFlag className="d18-banner-flag" />
-        <span>¡Viva el 18!</span>
-        <ChileFlag className="d18-banner-flag" />
+      <div className="d18-dock">
+        <Toy className="d18-toy" label={copy.flag} onClick={play}>
+          <ChileFlag className="d18-svg" />
+        </Toy>
+        <div className="d18-side">
+          <ChileIcons />
+          <button type="button" className="d18-music" onClick={() => setMusic((v) => !v)}>
+            {music ? copy.musicOff : copy.music}
+          </button>
+          <span className="d18-viva">¡Viva el 18!</span>
+        </div>
       </div>
-      <ChileIcons />
-      <button type="button" className="d18-music" onClick={() => setMusic((v) => !v)}>
-        {music ? copy.musicOff : copy.music}
-      </button>
       {music && (
         <iframe
           className="d18-player"
@@ -204,10 +248,11 @@ export function PatrioticNight({ copy }) {
           allow="autoplay; encrypted-media"
         />
       )}
-      <Toy className="d18-toy" label={copy.flag} onClick={play}>
-        <ChileFlag className="d18-svg" />
-      </Toy>
-      {flash && <div className="season-flash d18-flash">¡VIVA EL 18!</div>}
+      {flash && (
+        <div className="season-flash d18-flash">
+          <ChileFlag className="d18-flash-flag" />
+        </div>
+      )}
     </div>
   )
 }

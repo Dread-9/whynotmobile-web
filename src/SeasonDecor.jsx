@@ -11,10 +11,10 @@ export default function SeasonDecor({ season, copy }) {
   const text = season ? copy[season.id] : null
 
   useEffect(() => {
-    if (!season) return undefined
+    if (!season || season.id === 'newyear') return undefined
     const onClick = (event) => {
       const target = event.target.closest('button, a')
-      if (!target || target.closest('.season-toy, .hw-pumpkin')) return
+      if (!target || target.closest('.season-toy, .hw-pumpkin, .ny-count')) return
       if (!target.classList.contains('bg-mark') && target.getAttribute('type') !== 'submit') return
       window.dispatchEvent(new Event('wn-season-fx'))
     }

@@ -15,6 +15,7 @@ import { sendContactEmail } from './utils/sendContact'
 import { copy } from './i18n'
 import PetPalooza from './PetPalooza'
 import SeasonDecor from './SeasonDecor'
+import SeasonBanner from './SeasonBanner'
 import { getSeason } from './season'
 
 const wsp = '56954583715'
@@ -46,13 +47,15 @@ const festiveLogo = {
 
 const Logo = ({ className = 'h-12', season }) => {
   const festive = season?.id && festiveLogo[season.id]
-  return (
+  const img = (
     <img
       src={festive || '/logo/wnm-badge.png'}
       alt="WhyNot Mobile"
-      className={`${festive ? 'h-[4.35rem] sm:h-[5.4rem]' : className} w-auto object-contain ${festive ? '' : 'rounded-full'} ${season?.id === 'dieciocho' ? 'logo-18' : ''}`}
+      className={`${festive ? 'h-full w-full' : className} object-contain ${festive ? '' : 'w-auto rounded-full'} ${season?.id === 'dieciocho' ? 'logo-18' : ''}`}
     />
   )
+  if (!festive) return img
+  return <span className={`logo-plate logo-plate-${season.id}`}>{img}</span>
 }
 
 const CheckRow = ({ checked, onChange, label, children, locked = false }) => (
@@ -235,9 +238,9 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-dvh bg-white dark:bg-[#120c1c]">
+    <div className="site-shell min-h-dvh bg-white">
       <SeasonDecor season={season} copy={t.season} />
-      <header className="site-header sticky top-0 z-40 border-b border-violet-100 bg-white/90 backdrop-blur dark:border-violet-900 dark:bg-[#120c1c]/90">
+      <header className="site-header sticky top-0 z-40 border-b border-violet-100 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
           <a href="#inicio" className="shrink-0 whitespace-nowrap duration-300 hover:scale-105" aria-label={t.brand}>
             <Logo className="h-12 sm:h-14" season={season} />
@@ -276,6 +279,7 @@ export default function App() {
           </nav>
         )}
       </header>
+      {season && <SeasonBanner season={season} copy={t.season[season.id]} />}
 
       {isPet ? (
         <PetPalooza t={t} />
